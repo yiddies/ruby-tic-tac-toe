@@ -1,4 +1,4 @@
-class Board
+class TicTacToe
   attr_reader :board
 
   def initialize
@@ -20,6 +20,8 @@ class Board
   def input
     column = nil
     row = nil
+    x = false
+    x == true ? x = false : x = true
 
     loop do
       puts "Which column would you like to enter? (0-2)"
@@ -39,8 +41,11 @@ class Board
 
     puts "You chose: column #{column}, row #{row}"
 
-    if @board[row][column] == [" "]
+    if @board[row][column] == [" "] and x == true
       @board[row][column] = ["X"]  # set the element to X
+      display
+    elsif @board[row][column] == [" "] and x == false
+      @board[row][column] = ["O"]  # set the element to X
       display
     else
       puts "That space is already taken."
@@ -48,6 +53,6 @@ class Board
   end
 end
 
-board = Board.new.board
-board_display = Board.new.display
-Board.new.input
+board = TicTacToe.new.board
+board_display = TicTacToe.new.display
+TicTacToe.new.input
