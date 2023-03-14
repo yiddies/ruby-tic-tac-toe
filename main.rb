@@ -20,23 +20,37 @@ class TicTacToe
   def input
     column = nil
     row = nil
+    exit_game = false
+
     x = false
     x == true ? x = false : x = true
 
     loop do
       puts "Which column would you like to enter? (0-2)"
       column = gets.chomp.to_i
-      break if (0..2).include?(column)
+      break if (0..2).include?(column) || column == -1
 
-      puts "Invalid input. Please enter a number between 0 and 2."
+      puts "Invalid input. Please enter a number between 0 and 2, or -1 to exit."
+    end
+
+    # Check if the user entered -1 to exit
+    if column == -1
+      puts "Goodbye!"
+      exit
     end
 
     loop do
       puts "You chose: column #{column}. Now choose a row. (0-2)"
       row = gets.chomp.to_i
-      break if (0..2).include?(row)
+      break if (0..2).include?(row) || row == -1
 
-      puts "Invalid input. Please enter a number between 0 and 2."
+      puts "Invalid input. Please enter a number between 0 and 2, or -1 to exit."
+    end
+
+    # Check if the user entered -1 to exit
+    if row == -1
+      puts "Goodbye!"
+      exit
     end
 
     puts "You chose: column #{column}, row #{row}"
@@ -45,14 +59,15 @@ class TicTacToe
       @board[row][column] = ["X"]  # set the element to X
       display
     elsif @board[row][column] == [" "] and x == false
-      @board[row][column] = ["O"]  # set the element to X
+      @board[row][column] = ["O"]  # set the element to O
       display
     else
       puts "That space is already taken."
     end
+    input
   end
 end
 
 board = TicTacToe.new.board
 board_display = TicTacToe.new.display
-TicTacToe.new.input
+game = TicTacToe.new.input
