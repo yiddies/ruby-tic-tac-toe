@@ -22,7 +22,6 @@ class TicTacToe
   def input
     column = nil
     row = nil
-    exit_game = false
     @x = !@x
 
     loop do
@@ -56,6 +55,7 @@ class TicTacToe
     if @board[row][column] == [" "] and @x == true
       @board[row][column] = ["X"]  # set the element to X
       display
+
       if win("X")
         puts "X won the game!"
         exit
@@ -63,6 +63,7 @@ class TicTacToe
     elsif @board[row][column] == [" "] and @x == false
       @board[row][column] = ["O"]  # set the element to O
       display
+
       if win("O")
         puts "O won the game!"
         exit
